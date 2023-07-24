@@ -1,38 +1,70 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.draggable-container {
+  width: 200px;
+  height: 200px;
+  background-color: lightblue;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+  cursor: grab;
+  position: fixed; /* Set default position to fixed */
 }
 
-.App-link {
-  color: #61dafb;
+/* Position at top-left */
+.draggable-container.top-left {
+  top: 10px;
+  left: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Position at top-right */
+.draggable-container.top-right {
+  top: 10px;
+  right: 10px;
+}
+
+/* Position at bottom-left */
+.draggable-container.bottom-left {
+  bottom: 10px;
+  left: 10px;
+  top: unset; /* Reset the 'top' property */
+}
+
+/* Position at bottom-right */
+.draggable-container.bottom-right {
+  bottom: 10px;
+  right: 10px;
+  top: unset; /* Reset the 'top' property */
+}
+
+/* Position at center */
+.draggable-container.center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.draggable-container.closed {
+  opacity: 0;
+}
+
+.draggable-button {
+  padding: 10px 20px;
+  background-color: #fff;
+  border: 2px solid #333;
+  cursor: pointer;
+  outline: none;
+}
+
+.draggable-container:not(.closed) {
+  cursor: grab;
+}
+
+.draggable-container:not(.closed):hover .draggable-button {
+  cursor: grab;
+}
+
+.draggable-container.closed,
+.draggable-container:not(.closed):hover {
+  cursor: default;
 }
